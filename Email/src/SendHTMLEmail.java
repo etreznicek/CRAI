@@ -121,7 +121,7 @@ public class SendHTMLEmail {
                 Transport transport = getMailSession.getTransport("smtp");
 
                 // Enter your correct gmail UserID and Password (XXXApp Shah@gmail.com)
-                transport.connect("smtp.office365.com", "support@hudl.com", "Hudd1ePassw0rd");
+                transport.connect("smtp.office365.com", "support@hudl.com", "");
                 transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
                 transport.close();
             }
@@ -224,7 +224,7 @@ public class SendHTMLEmail {
                 Transport transport = getMailSession.getTransport("smtp");
 
                 // Enter your correct gmail UserID and Password (XXXApp Shah@gmail.com)
-                transport.connect("smtp.office365.com", "support@hudl.com", "Hudd1ePassw0rd");
+                transport.connect("smtp.office365.com", "support@hudl.com", "");
                 transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
                 transport.close();
             }
