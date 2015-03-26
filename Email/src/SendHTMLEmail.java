@@ -61,43 +61,34 @@ public class SendHTMLEmail
                 generateMailMessage = new MimeMessage(getMailSession);
 
                 //generateMailMessage.addRecipient(Message.RecipientType.CC, new InternetAddress("anthony.duren@hudl.com"));
-                generateMailMessage.setSubject("Oh Hello There.");
-                String emailBody = "<table cellpadding=\"15\" style=\"background-color: #414d58; width: 100%;\" width=\"100%\">\n" +
+                generateMailMessage.setSubject("Hudl Support | Not Enough Disk Space");
+                String emailBody = "<table cellpadding=\"20\" style=\"background-color: #38434F; width: 100%;\" width=\"100%\">\n" +
                         "    <tr>\n" +
                         "        <td>\n" +
-                        "            <img src=\"https://gallery.mailchimp.com/ede0e578e4e69ca463770569b/images/2f4b6766-26b7-4706-af08-ee8d8248f007.jpg\" align=\"none\" style=\"height:58px;\">\n" +
+                        "            <img src=\"http://hudl-content.s3.amazonaws.com/mkt/hudl-light2.png\" align=\"none\" style=\"height:50px;\">\n" +
                         "        </td>\n" +
                         "    </tr>\n" +
                         "    <tr>\n" +
-                        "        <td style=\"font-family:'arial','helvetica neue','helvetica',sans-serif;font-weight: bold;line-height: 1.6;color: #E8E8E8;font-size: 15px;text-align: left;\">\n" +
+                        "        <td style=\"font-family:'arial','helvetica neue','helvetica',sans-serif;font-weight: bold;line-height: 1.25;color: #E8E8E8;font-size: 15px;text-align: left;\">\n" +
                         "            Hey Coach,\n" +
                         "        </td>\n" +
                         "    </tr>\n" +
                         "    <tr>\n" +
-                        "        <td style=\"font-family:'arial','helvetica neue','helvetica',sans-serif;font-weight: normal;line-height: 1.6;color: #E8E8E8;font-size: 15px;text-align: left;\">\n" +
-                        "            We noticed that you might be experiencing difficulties in uploading film related to <span style=\"color: #F87620;\">not enough space</span> on your hard-drive.\n" +
+                        "        <td style=\"font-family:'arial','helvetica neue','helvetica',sans-serif;font-weight: normal;line-height: 1.25;color: #E8E8E8;font-size: 15px;text-align: left;\">\n" +
+                        "            We noticed that you might be experiencing difficulties in uploading film related to <span style=\"color: #F87620;\">not enough space</span> on your hard-drive. Files should be deleted automatically after an upload is complete, but you can delete old video files if you encounter an error.\n" +
                         "        </td>\n" +
                         "    </tr>\n" +
                         "    <tr>\n" +
-                        "        <td style=\"font-family:'arial','helvetica neue','helvetica',sans-serif;font-weight: normal;line-height: 1.6;color: #E8E8E8;font-size: 15px;text-align: left;\">\n" +
-                        "            Files should be deleted automatically after an upload is complete, but you can delete old video files if you encounter an error.\n" +
-                        "        </td>\n" +
-                        "    </tr>\n" +
-                        "    <tr>\n" +
-                        "        <td style=\"font-family:'arial','helvetica neue','helvetica',sans-serif;font-weight: normal;line-height: 1.6;color: #E8E8E8;font-size: 15px;text-align: left;\">\n" +
+                        "        <td style=\"font-family:'arial','helvetica neue','helvetica',sans-serif;font-weight: normal;line-height: 1.25;color: #E8E8E8;font-size: 15px;text-align: left;\">\n" +
                         "            Following the steps in this <a href=\"http://public.hudl.com/support/troubleshooting/delete-mercury-temporary-project-files/\" style=\"color: #F87620; font-weight: bold; transition: 0.2s;\">tutorial</a> should resolve the problem.\n" +
                         "        </td>\n" +
                         "    </tr>\n" +
                         "    <tr>\n" +
-                        "    </tr>\n" +
-                        "    <tr>\n" +
-                        "        <td style=\"font-family:'arial','helvetica neue','helvetica',sans-serif;font-weight: normal;line-height: 1.6;color: #E8E8E8;font-size: 15px;text-align: left;\">\n" +
+                        "        <td style=\"font-family:'arial','helvetica neue','helvetica',sans-serif;font-weight: normal;line-height: 1.25;color: #E8E8E8;font-size: 15px;text-align: left;\">\n" +
                         "            If you ever need any help, contact us at <a href=\"mailto:support@hudl.com\" style=\"color: #F87620; font-weight: bold; transition: 0.2s;\">support@hudl.com</a>.\n" +
-                        "        </td>\n" +
-                        "    </tr>\n" +
-                        "    <tr>\n" +
-                        "        <td style=\"font-family:'arial','helvetica neue','helvetica',sans-serif;font-weight: normal;line-height: 1.6;color: #E8E8E8;font-size: 15px;text-align: left;\">\n" +
-                        "            <span style=\"color: #F87620; font-weight: bold\">-</span> The Hudl Team\n" +
+                        "            <br>\n" +
+                        "            <br>\n" +
+                        "            <span style=\"color: #F87620; font-weight: bold\">&ndash;</span> The Hudl Team\n" +
                         "        </td>\n" +
                         "    </tr>\n" +
                         "</table>";
