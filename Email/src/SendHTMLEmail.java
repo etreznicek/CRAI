@@ -139,12 +139,15 @@ public class SendHTMLEmail
                     String[] username = line.split(csvSplitBy);
                     System.out.println(username[0]);
                     generateMailMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(username[0]));
+                    generateMailMessage.setSender(new InternetAddress("support@hudl.com"));
+                    generateMailMessage.setFrom(new InternetAddress("support@hudl.com"));
 //Step3
                     //System.out.println("\n\n 3rd ===> Get Session and Send mail");
                     Transport transport = getMailSession.getTransport("smtp");
 
                     // Enter your correct gmail UserID and Password (XXXApp Shah@gmail.com)
-                    transport.connect("smtp.gmail.com", "etreznicek@gmail.com", "Hudl1234");
+                    //
+                    transport.connect("smtp.office365.com", "support@hudl.com", "Hudd1ePassw0rd");
                     transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
                     transport.close();
 
