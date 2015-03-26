@@ -32,13 +32,14 @@ public class SendHTMLEmail
             public static void generateAndSendEmail() throws AddressException, MessagingException, IOException {
 
 //Step1
-<<<<<<< HEAD
-                String csvFile = "/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/SourceUriUserTest.csv";
-=======
-                String csvFile = "/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/usertest.csv";
->>>>>>> origin/master
+
+                String csvFile = "/Users/hudl/Desktop/SourceUriusertest.csv";
+                String staticFile = "/Users/hudl/Desktop/staticSource.csv";
+
                 BufferedReader br = null;
+                BufferedReader br2 = null;
                 String line = "";
+                String line2 = "";
                 String cvsSplitBy = ",";
 
                 System.out.println("\n 1st ===> setup Mail Server Properties..");
@@ -137,23 +138,45 @@ public class SendHTMLEmail
 
                     String csvSplitBy = ",";
                     String[] username = line.split(csvSplitBy);
-                    System.out.println(username[0]);
-                    generateMailMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(username[0]));
-                    generateMailMessage.setSender(new InternetAddress("support@hudl.com"));
-                    generateMailMessage.setFrom(new InternetAddress("support@hudl.com"));
+                    int x = 0;
+
+                    br2 = new BufferedReader(new FileReader(staticFile));
+
+
+
+                        while((line2 = br2.readLine()) != null){
+
+                            String[] staticUsername = line2.split(csvSplitBy);
+
+                            if(username[0].equals(staticUsername[0])){
+                                x = 1;
+                                break;
+                            }
+
+
+                        }
+                    br2.close();
+
+                    if( x==0 ) {
+
+                        System.out.println(username[0]);
+                        generateMailMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(username[0]));
+                        generateMailMessage.setSender(new InternetAddress("support@hudl.com"));
+                        generateMailMessage.setFrom(new InternetAddress("support@hudl.com"));
 //Step3
-                    //System.out.println("\n\n 3rd ===> Get Session and Send mail");
-                    Transport transport = getMailSession.getTransport("smtp");
+                        //System.out.println("\n\n 3rd ===> Get Session and Send mail");
+                        Transport transport = getMailSession.getTransport("smtp");
 
-                    // Enter your correct gmail UserID and Password (XXXApp Shah@gmail.com)
-                    //
-                    transport.connect("smtp.office365.com", "support@hudl.com", "Hudd1ePassw0rd");
-                    transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
-                    transport.close();
-
+                        // Enter your correct gmail UserID and Password (XXXApp Shah@gmail.com)
+                        //
+                        transport.connect("smtp.office365.com", "support@hudl.com", "Hudd1ePassw0rd");
+                        transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
+                        transport.close();
+                    }
                 }
 
                 br.close();
+
 
                 System.out.println("Done muthafucka");
 
