@@ -32,7 +32,7 @@ public class SendHTMLEmail
             public static void generateAndSendEmail() throws AddressException, MessagingException, IOException {
 
 //Step1
-                String csvFile = "/Users/hudl/Desktop/usertest.csv";
+                String csvFile = "/Email/src/usertest.csv";
                 BufferedReader br = null;
                 String line = "";
                 String cvsSplitBy = ",";
