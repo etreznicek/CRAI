@@ -32,7 +32,7 @@ public class SendHTMLEmail
             public static void generateAndSendEmail() throws AddressException, MessagingException, IOException {
 
 //Step1
-                String csvFile = "/Email/src/usertest.csv";
+                String csvFile = "/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/SourceUriUserTest.csv";
                 BufferedReader br = null;
                 String line = "";
                 String cvsSplitBy = ",";
@@ -52,38 +52,80 @@ public class SendHTMLEmail
                 generateMailMessage = new MimeMessage(getMailSession);
 
                 //generateMailMessage.addRecipient(Message.RecipientType.CC, new InternetAddress("anthony.duren@hudl.com"));
-                generateMailMessage.setSubject("Hudl Support | Not Enough Disk Space");
-                String emailBody = "<table cellpadding=\"20\" style=\"background-color: #38434F; width: 100%;\" width=\"100%\">\n" +
-                        "    <tr>\n" +
-                        "        <td>\n" +
-                        "            <img src=\"http://hudl-content.s3.amazonaws.com/mkt/hudl-light2.png\" align=\"none\" style=\"height:50px;\">\n" +
-                        "        </td>\n" +
-                        "    </tr>\n" +
-                        "    <tr>\n" +
-                        "        <td style=\"font-family:'arial','helvetica neue','helvetica',sans-serif;font-weight: bold;line-height: 1.25;color: #E8E8E8;font-size: 15px;text-align: left;\">\n" +
-                        "            Hey Coach,\n" +
-                        "        </td>\n" +
-                        "    </tr>\n" +
-                        "    <tr>\n" +
-                        "        <td style=\"font-family:'arial','helvetica neue','helvetica',sans-serif;font-weight: normal;line-height: 1.25;color: #E8E8E8;font-size: 15px;text-align: left;\">\n" +
-                        "            We noticed that you might be experiencing difficulties in uploading film related to <span style=\"color: #F87620;\">not enough space</span> on your hard-drive. Files should be deleted automatically after an upload is complete, but you can delete old video files if you encounter an error.\n" +
-                        "        </td>\n" +
-                        "    </tr>\n" +
-                        "    <tr>\n" +
-                        "        <td style=\"font-family:'arial','helvetica neue','helvetica',sans-serif;font-weight: normal;line-height: 1.25;color: #E8E8E8;font-size: 15px;text-align: left;\">\n" +
-                        "            Following the steps in this <a href=\"http://public.hudl.com/support/troubleshooting/delete-mercury-temporary-project-files/\" style=\"color: #F87620; font-weight: bold; transition: 0.2s;\">tutorial</a> should resolve the problem.\n" +
-                        "        </td>\n" +
-                        "    </tr>\n" +
-                        "    <tr>\n" +
-                        "        <td style=\"font-family:'arial','helvetica neue','helvetica',sans-serif;font-weight: normal;line-height: 1.25;color: #E8E8E8;font-size: 15px;text-align: left;\">\n" +
-                        "            If you ever need any help, contact us at <a href=\"mailto:support@hudl.com\" style=\"color: #F87620; font-weight: bold; transition: 0.2s;\">support@hudl.com</a>.\n" +
-                        "            <br>\n" +
-                        "            <br>\n" +
-                        "            <span style=\"color: #F87620; font-weight: bold\">&ndash;</span> The Hudl Team\n" +
-                        "        </td>\n" +
-                        "    </tr>\n" +
-                        "</table>";
-                generateMailMessage.setContent(emailBody, "text/html");
+                if(csvFile.contains("DiskSpace"))
+                {
+                    generateMailMessage.setSubject("Hudl Support | Not Enough Disk Space");
+
+                    String emailBody = "<table cellpadding=\"20\" style=\"background-color: #38434F; width: 100%;\" width=\"100%\">\n" +
+                            "    <tr>\n" +
+                            "        <td>\n" +
+                            "            <img src=\"http://hudl-content.s3.amazonaws.com/mkt/hudl-light2.png\" height=\"50px;\" align=\"none\" style=\"height:50px;\">\n" +
+                            "        </td>\n" +
+                            "    </tr>\n" +
+                            "    <tr>\n" +
+                            "        <td style=\"font-family:'arial','helvetica neue','helvetica',sans-serif;font-weight: bold;line-height: 1.25;color: #E8E8E8;font-size: 15px;text-align: left;\">\n" +
+                            "            Hey Coach,\n" +
+                            "        </td>\n" +
+                            "    </tr>\n" +
+                            "    <tr>\n" +
+                            "        <td style=\"font-family:'arial','helvetica neue','helvetica',sans-serif;font-weight: normal;line-height: 1.25;color: #E8E8E8;font-size: 15px;text-align: left;\">\n" +
+                            "            We noticed that you might be experiencing difficulties in uploading film related to <span style=\"color: #F87620;\">not enough space</span> on your hard-drive. Files should be deleted automatically after an upload is complete, but you can delete old video files if you encounter an error.\n" +
+                            "        </td>\n" +
+                            "    </tr>\n" +
+                            "    <tr>\n" +
+                            "        <td style=\"font-family:'arial','helvetica neue','helvetica',sans-serif;font-weight: normal;line-height: 1.25;color: #E8E8E8;font-size: 15px;text-align: left;\">\n" +
+                            "            Following the steps in this <a href=\"http://public.hudl.com/support/troubleshooting/delete-mercury-temporary-project-files/\" style=\"color: #F87620; font-weight: bold; transition: 0.2s;\">tutorial</a> should resolve the problem.\n" +
+                            "        </td>\n" +
+                            "    </tr>\n" +
+                            "    <tr>\n" +
+                            "        <td style=\"font-family:'arial','helvetica neue','helvetica',sans-serif;font-weight: normal;line-height: 1.25;color: #E8E8E8;font-size: 15px;text-align: left;\">\n" +
+                            "            If you ever need any help, contact us at <a href=\"mailto:support@hudl.com\" style=\"color: #F87620; font-weight: bold; transition: 0.2s;\">support@hudl.com</a>.\n" +
+                            "            <br>\n" +
+                            "            <br>\n" +
+                            "            <span style=\"color: #F87620; font-weight: bold\">&ndash;</span> The Hudl Team\n" +
+                            "        </td>\n" +
+                            "    </tr>\n" +
+                            "</table>";
+
+                    generateMailMessage.setContent(emailBody, "text/html");
+                }else if(csvFile.contains("SourceUri"))
+                {
+                    generateMailMessage.setSubject("Hudl Support | Source URI Error");
+
+                    String emailBody = "<table cellpadding=\"20\" style=\"background-color: #38434F; width: 100%;\" width=\"100%\">\n" +
+                            "    <tr>\n" +
+                            "        <td>\n" +
+                            "            <img src=\"http://hudl-content.s3.amazonaws.com/mkt/hudl-light2.png\" height=\"50px;\" align=\"none\" style=\"height:50px;\">\n" +
+                            "        </td>\n" +
+                            "    </tr>\n" +
+                            "    <tr>\n" +
+                            "        <td style=\"font-family:'arial','helvetica neue','helvetica',sans-serif;font-weight: bold;line-height: 1.25;color: #E8E8E8;font-size: 15px;text-align: left;\">\n" +
+                            "            Hey Coach,\n" +
+                            "        </td>\n" +
+                            "    </tr>\n" +
+                            "    <tr>\n" +
+                            "        <td style=\"font-family:'arial','helvetica neue','helvetica',sans-serif;font-weight: normal;line-height: 1.25;color: #E8E8E8;font-size: 15px;text-align: left;\">\n" +
+                            "            We noticed that you might be experiencing <span style=\"color: #F87620;\">difficulties in uploading film</span> with Hudl Mercury. You may see this eror in step two of Hudl Mercury when attempting to review the video.\n" +
+                            "        </td>\n" +
+                            "    </tr>\n" +
+                            "    <tr>\n" +
+                            "        <td style=\"font-family:'arial','helvetica neue','helvetica',sans-serif;font-weight: normal;line-height: 1.25;color: #E8E8E8;font-size: 15px;text-align: left;\">\n" +
+                            "            Following the steps in this <a href=\"http://public.hudl.com/support/troubleshooting/source-uri-error/\" style=\"color: #F87620; font-weight: bold; transition: 0.2s;\">tutorial</a> should resolve the problem.\n" +
+                            "        </td>\n" +
+                            "    </tr>\n" +
+                            "    <tr>\n" +
+                            "        <td style=\"font-family:'arial','helvetica neue','helvetica',sans-serif;font-weight: normal;line-height: 1.25;color: #E8E8E8;font-size: 15px;text-align: left;\">\n" +
+                            "            If you ever need any help, contact us at <a href=\"mailto:support@hudl.com\" style=\"color: #F87620; font-weight: bold; transition: 0.2s;\">support@hudl.com</a>.\n" +
+                            "            <br>\n" +
+                            "            <br>\n" +
+                            "            <span style=\"color: #F87620; font-weight: bold\">&ndash;</span> The Hudl Team\n" +
+                            "        </td>\n" +
+                            "    </tr>\n" +
+                            "</table>";
+
+                    generateMailMessage.setContent(emailBody, "text/html");
+                }
+
 
                 br = new BufferedReader(new FileReader(csvFile));
 
