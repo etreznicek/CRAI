@@ -1,5 +1,8 @@
 import sun.org.mozilla.javascript.internal.ast.WhileLoop;
 
+import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -12,10 +15,6 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 
 public class SendHTMLEmail {
     static Properties mailServerProperties;
@@ -124,6 +123,17 @@ public class SendHTMLEmail {
                 transport.connect("smtp.office365.com", "support@hudl.com", "");
                 transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
                 transport.close();
+
+                //Step4
+                FileWriter fw = new FileWriter("/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/StaticSourceURIUsers.csv",true);
+                Date date = new Date();
+
+                fw.append(username[0] + "," + date + "," + "\n");
+
+                System.out.println("Wrote " + username[0] + " to file on " + date);
+
+                fw.flush();
+                fw.close();
             }
         }
 
@@ -227,6 +237,17 @@ public class SendHTMLEmail {
                 transport.connect("smtp.office365.com", "support@hudl.com", "");
                 transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
                 transport.close();
+
+                //Step4
+                FileWriter fw = new FileWriter("/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/StaticDiskSpaceUsers.csv",true);
+                Date date = new Date();
+
+                fw.append(username[0] + "," + date + "," + "\n");
+
+                System.out.println("Wrote " + username[0] + " to file on " + date);
+
+                fw.flush();
+                fw.close();
             }
         }
 
