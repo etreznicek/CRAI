@@ -32,7 +32,11 @@ public class SendHTMLEmail
             public static void generateAndSendEmail() throws AddressException, MessagingException, IOException {
 
 //Step1
+<<<<<<< HEAD
                 String csvFile = "/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/SourceUriUserTest.csv";
+=======
+                String csvFile = "/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/usertest.csv";
+>>>>>>> origin/master
                 BufferedReader br = null;
                 String line = "";
                 String cvsSplitBy = ",";
@@ -52,6 +56,7 @@ public class SendHTMLEmail
                 generateMailMessage = new MimeMessage(getMailSession);
 
                 //generateMailMessage.addRecipient(Message.RecipientType.CC, new InternetAddress("anthony.duren@hudl.com"));
+
                 if(csvFile.contains("DiskSpace"))
                 {
                     generateMailMessage.setSubject("Hudl Support | Not Enough Disk Space");
@@ -125,7 +130,6 @@ public class SendHTMLEmail
 
                     generateMailMessage.setContent(emailBody, "text/html");
                 }
-
 
                 br = new BufferedReader(new FileReader(csvFile));
 
