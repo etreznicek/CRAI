@@ -1,3 +1,5 @@
+import sun.org.mozilla.javascript.internal.ast.WhileLoop;
+
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -23,29 +25,18 @@ public class SendHTMLEmail
 
             public static void main(String args[]) throws AddressException, MessagingException, IOException {
                 SendHTMLEmail obj = new SendHTMLEmail();
-                String[] username = obj.run();
-                generateAndSendEmail(username);
+                generateAndSendEmail();
                 System.out.println("\n\n ===> Your Java Program has just sent an Email successfully. Check your email..");
             }
 
-            public static String [] run() throws IOException {
-
-                String csvFile = "/Users/hudl/Desktop/usertest.csv";
-                BufferedReader br = null;
-                String line = null;
-                String cvsSplitBy = ",";
-
-                CSVReader reader = new CSVReader(new FileReader(csvFile));
-                List username = reader.readAll();
-
-
-                br.close();
-                return username;
-            }
-
-            public static void generateAndSendEmail(String[] username) throws AddressException, MessagingException {
+            public static void generateAndSendEmail() throws AddressException, MessagingException, IOException {
 
 //Step1
+                String csvFile = "/Users/hudl/Desktop/usertest.csv";
+                BufferedReader br = null;
+                String line = "";
+                String cvsSplitBy = ",";
+
                 System.out.println("\n 1st ===> setup Mail Server Properties..");
                 mailServerProperties = System.getProperties();
                 mailServerProperties.put("mail.smtp.port", "587");
@@ -103,22 +94,28 @@ public class SendHTMLEmail
                         "</table>";
                 generateMailMessage.setContent(emailBody, "text/html");
 
-                int count = 0;
-                System.out.println(username.length);
-                do {
+                br = new BufferedReader(new FileReader(csvFile));
 
-                    generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(username[count]));
+                while((line = br.readLine()) != null) {
+
+                    String csvSplitBy = ",";
+                    String[] username = line.split(csvSplitBy);
+                    System.out.println(username[0]);
+                    generateMailMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(username[0]));
 //Step3
                     //System.out.println("\n\n 3rd ===> Get Session and Send mail");
                     Transport transport = getMailSession.getTransport("smtp");
 
                     // Enter your correct gmail UserID and Password (XXXApp Shah@gmail.com)
-                    transport.connect("smtp.gmail.com", "etreznicek@gmail.com", "ASUN15119");
+                    transport.connect("smtp.gmail.com", "etreznicek@gmail.com", "Hudl1234");
                     transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
                     transport.close();
-                    System.out.println(username[count]);
-                    count++;
-                } while (count < username.length);
+
+                }
+
+                br.close();
+
+                System.out.println("Done muthafucka");
 
             }
 
