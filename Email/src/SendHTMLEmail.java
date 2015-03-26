@@ -32,7 +32,7 @@ public class SendHTMLEmail
             public static void generateAndSendEmail() throws AddressException, MessagingException, IOException {
 
 //Step1
-                String csvFile = "/Email/src/usertest.csv";
+                String csvFile = "/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/usertest.csv";
                 BufferedReader br = null;
                 String line = "";
                 String cvsSplitBy = ",";
@@ -56,7 +56,7 @@ public class SendHTMLEmail
                 String emailBody = "<table cellpadding=\"20\" style=\"background-color: #38434F; width: 100%;\" width=\"100%\">\n" +
                         "    <tr>\n" +
                         "        <td>\n" +
-                        "            <img src=\"http://hudl-content.s3.amazonaws.com/mkt/hudl-light2.png\" align=\"none\" style=\"height:50px;\">\n" +
+                        "            <img src=\"http://hudl-content.s3.amazonaws.com/mkt/hudl-light2.png\" height=\"50px\" align=\"none\" style=\"height:50px;\">\n" +
                         "        </td>\n" +
                         "    </tr>\n" +
                         "    <tr>\n" +
