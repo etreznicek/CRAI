@@ -32,12 +32,14 @@ public class SendHTMLEmail {
 
     public static void generateAndSendSourceURIEmail() throws AddressException, MessagingException, IOException {
         //Step1
-        String csvFile = "/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/NewSourceURIUsers.csv";
-        String staticFile = "/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/StaticSourceURIUsers.csv";
+        String csvFile = "/Users/hudl/Desktop/NewSourceURIUsers.csv";
+        String staticFile = "/Users/hudl/Desktop/StaticSourceURIUsers.csv";
         BufferedReader br = null;
         BufferedReader br2 = null;
         String line = "";
         String line2 = "";
+        String unformattedEmailAddress = "";
+        String emailAddress = "";
         String csvSplitBy = ",";
 
         System.out.println("\n 1st ===> setup Mail Server Properties..");
@@ -96,12 +98,15 @@ public class SendHTMLEmail {
             String[] username = line.split(csvSplitBy);
             int x = 0;
 
+            unformattedEmailAddress = username[0];
+            emailAddress = unformattedEmailAddress.substring(1,(unformattedEmailAddress.length() - 1));
+
             br2 = new BufferedReader(new FileReader(staticFile));
 
             while ((line2 = br2.readLine()) != null) {
                 String[] staticUsername = line2.split(csvSplitBy);
 
-                if (username[0].equals(staticUsername[0])) {
+                if (emailAddress.equals(staticUsername[0])) {
                     x = 1;
                     break;
                 }
@@ -110,32 +115,34 @@ public class SendHTMLEmail {
             br2.close();
 
             if (x == 0) {
-                System.out.println(username[0]);
+                System.out.println(emailAddress);
 
-                generateMailMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(username[0]));
-                generateMailMessage.setSender(new InternetAddress("support@hudl.com"));
-                generateMailMessage.setFrom(new InternetAddress("support@hudl.com"));
+                if (!(emailAddress.equals("sernam"))) {
+                    generateMailMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(emailAddress));
+                    generateMailMessage.setSender(new InternetAddress("support@hudl.com"));
+                    generateMailMessage.setFrom(new InternetAddress("support@hudl.com"));
 
-                //Step3
-                //System.out.println("\n\n 3rd ===> Get Session and Send mail");
-                Transport transport = getMailSession.getTransport("smtp");
+                    //Step3
+                    //System.out.println("\n\n 3rd ===> Get Session and Send mail");
+                    Transport transport = getMailSession.getTransport("smtp");
 
-                // Enter your correct gmail UserID and Password (XXXApp Shah@gmail.com)
-                transport.connect("smtp.office365.com", "support@hudl.com", "");
-                transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
-                transport.close();
+                    // Enter your correct gmail UserID and Password (XXXApp Shah@gmail.com)
+                    transport.connect("smtp.office365.com", "support@hudl.com", "");
+                    transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
+                    transport.close();
 
-                //Step4
-                FileWriter fw = new FileWriter("/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/StaticSourceURIUsers.csv",true);
-                Date date = new Date();
-                DateFormat formatDate = new SimpleDateFormat("MM-dd-yyyy");
+                    //Step4
+                    FileWriter fw = new FileWriter("/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/StaticSourceURIUsers.csv", true);
+                    Date date = new Date();
+                    DateFormat formatDate = new SimpleDateFormat("MM-dd-yyyy");
 
-                fw.append(username[0] + "," + formatDate.format(date) + "," + "\n");
+                    fw.append(emailAddress + "," + formatDate.format(date) + "," + "\n");
 
-                System.out.println("Wrote " + username[0] + " to file on " + date);
+                    System.out.println("Wrote " + emailAddress + " to file on " + date);
 
-                fw.flush();
-                fw.close();
+                    fw.flush();
+                    fw.close();
+                }
             }
         }
 
@@ -146,12 +153,14 @@ public class SendHTMLEmail {
 
     public static void generateAndSendDiskSpaceEmail() throws AddressException, MessagingException, IOException {
         //Step1
-        String csvFile = "/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/NewDiskSpaceUsers.csv";
-        String staticFile = "/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/StaticDiskSpaceUsers.csv";
+        String csvFile = "/Users/hudl/Desktop/NewDiskSpaceUsers.csv";
+        String staticFile = "/Users/hudl/Desktop/StaticDiskSpaceUsers.csv";
         BufferedReader br = null;
         BufferedReader br2 = null;
         String line = "";
         String line2 = "";
+        String unformattedEmailAddress = "";
+        String emailAddress = "";
         String csvSplitBy = ",";
 
         System.out.println("\n 1st ===> setup Mail Server Properties..");
@@ -210,12 +219,15 @@ public class SendHTMLEmail {
             String[] username = line.split(csvSplitBy);
             int x = 0;
 
+            unformattedEmailAddress = username[0];
+            emailAddress = unformattedEmailAddress.substring(1,(unformattedEmailAddress.length() - 1));
+
             br2 = new BufferedReader(new FileReader(staticFile));
 
             while ((line2 = br2.readLine()) != null) {
                 String[] staticUsername = line2.split(csvSplitBy);
 
-                if (username[0].equals(staticUsername[0])) {
+                if (emailAddress.equals(staticUsername[0])) {
                     x = 1;
                     break;
                 }
@@ -224,32 +236,34 @@ public class SendHTMLEmail {
             br2.close();
 
             if (x == 0) {
-                System.out.println(username[0]);
+                System.out.println(emailAddress);
 
-                generateMailMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(username[0]));
-                generateMailMessage.setSender(new InternetAddress("support@hudl.com"));
-                generateMailMessage.setFrom(new InternetAddress("support@hudl.com"));
+                if(!(emailAddress.equals("sernam"))) {
+                    generateMailMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(emailAddress));
+                    generateMailMessage.setSender(new InternetAddress("support@hudl.com"));
+                    generateMailMessage.setFrom(new InternetAddress("support@hudl.com"));
 
-                //Step3
-                //System.out.println("\n\n 3rd ===> Get Session and Send mail");
-                Transport transport = getMailSession.getTransport("smtp");
+                    //Step3
+                    //System.out.println("\n\n 3rd ===> Get Session and Send mail");
+                    Transport transport = getMailSession.getTransport("smtp");
 
-                // Enter your correct gmail UserID and Password (XXXApp Shah@gmail.com)
-                transport.connect("smtp.office365.com", "support@hudl.com", "");
-                transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
-                transport.close();
+                    // Enter your correct gmail UserID and Password (XXXApp Shah@gmail.com)
+                    transport.connect("smtp.office365.com", "support@hudl.com", "");
+                    transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
+                    transport.close();
 
-                //Step4
-                FileWriter fw = new FileWriter("/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/StaticDiskSpaceUsers.csv",true);
-                Date date = new Date();
-                DateFormat formatDate = new SimpleDateFormat("MM-dd-yyyy");
+                    //Step4
+                    FileWriter fw = new FileWriter("/Users/hudl/Desktop/StaticDiskSpaceUsers.csv", true);
+                    Date date = new Date();
+                    DateFormat formatDate = new SimpleDateFormat("MM-dd-yyyy");
 
-                fw.append(username[0] + "," + formatDate.format(date) + "," + "\n");
+                    fw.append(emailAddress + "," + formatDate.format(date) + "," + "\n");
 
-                System.out.println("Wrote " + username[0] + " to file on " + date);
+                    System.out.println("Wrote " + emailAddress + " to file on " + date);
 
-                fw.flush();
-                fw.close();
+                    fw.flush();
+                    fw.close();
+                }
             }
         }
 
@@ -259,7 +273,7 @@ public class SendHTMLEmail {
     }
 
     public static void deleteOldUserEmailsFromStaticSourceURIFile() throws IOException{
-        Scanner scanner = new Scanner(new File("/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/StaticSourceURIUsers.csv"));
+        Scanner scanner = new Scanner(new File("/Users/hudl/Desktop/StaticSourceURIUsers.csv"));
         String string = "";
         String username = "";
         long DAY_IN_MS = 1000 * 60 * 60 * 24;
@@ -267,7 +281,7 @@ public class SendHTMLEmail {
         Date oneWeekAgo = new Date(System.currentTimeMillis() - (7 * DAY_IN_MS));
         DateFormat formatDate = new SimpleDateFormat("MM-dd-yyyy");
 
-        FileWriter fw = new FileWriter("/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/StaticSourceURIUsers.csv",true);
+        FileWriter fw = new FileWriter("/Users/hudl/Desktop/StaticSourceURIUsers.csv",true);
 
         scanner.useDelimiter(",");
 
@@ -294,7 +308,7 @@ public class SendHTMLEmail {
     }
 
     public static void deleteOldUserEmailsFromStaticDiskSpaceFile() throws IOException{
-        Scanner scanner = new Scanner(new File("/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/StaticDiskSpaceUsers.csv"));
+        Scanner scanner = new Scanner(new File("/Users/hudl/Desktop/StaticDiskSpaceUsers.csv"));
         String string = "";
         String username = "";
         long DAY_IN_MS = 1000 * 60 * 60 * 24;
@@ -302,7 +316,7 @@ public class SendHTMLEmail {
         Date oneWeekAgo = new Date(System.currentTimeMillis() - (7 * DAY_IN_MS));
         DateFormat formatDate = new SimpleDateFormat("MM-dd-yyyy");
 
-        FileWriter fw = new FileWriter("/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/StaticDiskSpaceUsers.csv",true);
+        FileWriter fw = new FileWriter("/Users/hudl/Desktop/StaticDiskSpaceUsers.csv",true);
 
         scanner.useDelimiter(",");
 
