@@ -38,7 +38,7 @@ public class SendHTMLEmail {
         BufferedReader br2 = null;
         String line = "";
         String line2 = "";
-        String unformattedEmailAddress = "";
+        //String unformattedEmailAddress = "";
         String emailAddress = "";
         String csvSplitBy = ",";
 
@@ -98,8 +98,9 @@ public class SendHTMLEmail {
             String[] username = line.split(csvSplitBy);
             int x = 0;
 
-            unformattedEmailAddress = username[0];
-            emailAddress = unformattedEmailAddress.substring(1,(unformattedEmailAddress.length() - 1));
+            //unformattedEmailAddress = username[0];
+            //emailAddress = unformattedEmailAddress.substring(1,(unformattedEmailAddress.length() - 1));
+            emailAddress = username[0];
 
             br2 = new BufferedReader(new FileReader(staticFile));
 
@@ -132,7 +133,7 @@ public class SendHTMLEmail {
                     transport.close();
 
                     //Step4
-                    FileWriter fw = new FileWriter("/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/StaticSourceURIUsers.csv", true);
+                    FileWriter fw = new FileWriter(staticFile, true);
                     Date date = new Date();
                     DateFormat formatDate = new SimpleDateFormat("MM-dd-yyyy");
 
@@ -159,7 +160,7 @@ public class SendHTMLEmail {
         BufferedReader br2 = null;
         String line = "";
         String line2 = "";
-        String unformattedEmailAddress = "";
+        //String unformattedEmailAddress = "";
         String emailAddress = "";
         String csvSplitBy = ",";
 
@@ -219,8 +220,9 @@ public class SendHTMLEmail {
             String[] username = line.split(csvSplitBy);
             int x = 0;
 
-            unformattedEmailAddress = username[0];
-            emailAddress = unformattedEmailAddress.substring(1,(unformattedEmailAddress.length() - 1));
+            //unformattedEmailAddress = username[0];
+            //emailAddress = unformattedEmailAddress.substring(1,(unformattedEmailAddress.length() - 1));
+            emailAddress = username[0];
 
             br2 = new BufferedReader(new FileReader(staticFile));
 
@@ -253,7 +255,7 @@ public class SendHTMLEmail {
                     transport.close();
 
                     //Step4
-                    FileWriter fw = new FileWriter("/Users/hudl/Desktop/StaticDiskSpaceUsers.csv", true);
+                    FileWriter fw = new FileWriter(staticFile, true);
                     Date date = new Date();
                     DateFormat formatDate = new SimpleDateFormat("MM-dd-yyyy");
 
@@ -273,16 +275,18 @@ public class SendHTMLEmail {
     }
 
     public static void deleteOldUserEmailsFromStaticSourceURIFile() throws IOException{
-        Scanner scanner = new Scanner(new File("/Users/hudl/Desktop/StaticSourceURIUsers.csv"));
+        Scanner scanner = null;
+        FileWriter fw = null;
         String string = "";
         String username = "";
+        String staticFile = "/Users/hudl/Desktop/StaticSourceURIUsers.csv";
         long DAY_IN_MS = 1000 * 60 * 60 * 24;
         Date date = null;
         Date oneWeekAgo = new Date(System.currentTimeMillis() - (7 * DAY_IN_MS));
         DateFormat formatDate = new SimpleDateFormat("MM-dd-yyyy");
 
-        FileWriter fw = new FileWriter("/Users/hudl/Desktop/StaticSourceURIUsers.csv",true);
-
+        fw = new FileWriter(staticFile,true);
+        scanner = new Scanner(new File(staticFile));
         scanner.useDelimiter(",");
 
         while(scanner.hasNext()){
@@ -308,16 +312,18 @@ public class SendHTMLEmail {
     }
 
     public static void deleteOldUserEmailsFromStaticDiskSpaceFile() throws IOException{
-        Scanner scanner = new Scanner(new File("/Users/hudl/Desktop/StaticDiskSpaceUsers.csv"));
+        Scanner scanner = null;
+        FileWriter fw = null;
         String string = "";
         String username = "";
+        String staticFile = "/Users/hudl/Desktop/StaticDiskSpaceUsers.csv";
         long DAY_IN_MS = 1000 * 60 * 60 * 24;
         Date date = null;
         Date oneWeekAgo = new Date(System.currentTimeMillis() - (7 * DAY_IN_MS));
         DateFormat formatDate = new SimpleDateFormat("MM-dd-yyyy");
 
-        FileWriter fw = new FileWriter("/Users/hudl/Desktop/StaticDiskSpaceUsers.csv",true);
-
+        fw = new FileWriter(staticFile,true);
+        scanner = new Scanner(new File(staticFile));
         scanner.useDelimiter(",");
 
         while(scanner.hasNext()){
