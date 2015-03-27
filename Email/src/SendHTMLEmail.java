@@ -1,8 +1,7 @@
 import sun.org.mozilla.javascript.internal.ast.WhileLoop;
 
 import java.io.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.text.*;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -15,6 +14,7 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.ParseException;
 
 public class SendHTMLEmail {
     static Properties mailServerProperties;
@@ -25,6 +25,8 @@ public class SendHTMLEmail {
         SendHTMLEmail obj = new SendHTMLEmail();
         generateAndSendSourceURIEmail();
         generateAndSendDiskSpaceEmail();
+        deleteOldUserEmailsFromStaticSourceURIFile();
+        deleteOldUserEmailsFromStaticDiskSpaceFile();
         System.out.println("\n\n ===> Your Java Program has just sent an Email successfully. Check your email..");
     }
 
@@ -91,7 +93,6 @@ public class SendHTMLEmail {
         br = new BufferedReader(new FileReader(csvFile));
 
         while ((line = br.readLine()) != null) {
-            //String csvSplitBy = ",";
             String[] username = line.split(csvSplitBy);
             int x = 0;
 
@@ -127,8 +128,9 @@ public class SendHTMLEmail {
                 //Step4
                 FileWriter fw = new FileWriter("/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/StaticSourceURIUsers.csv",true);
                 Date date = new Date();
+                DateFormat formatDate = new SimpleDateFormat("MM-dd-yyyy");
 
-                fw.append(username[0] + "," + date + "," + "\n");
+                fw.append(username[0] + "," + formatDate.format(date) + "," + "\n");
 
                 System.out.println("Wrote " + username[0] + " to file on " + date);
 
@@ -205,7 +207,6 @@ public class SendHTMLEmail {
         br = new BufferedReader(new FileReader(csvFile));
 
         while ((line = br.readLine()) != null) {
-            //String csvSplitBy = ",";
             String[] username = line.split(csvSplitBy);
             int x = 0;
 
@@ -241,8 +242,9 @@ public class SendHTMLEmail {
                 //Step4
                 FileWriter fw = new FileWriter("/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/StaticDiskSpaceUsers.csv",true);
                 Date date = new Date();
+                DateFormat formatDate = new SimpleDateFormat("MM-dd-yyyy");
 
-                fw.append(username[0] + "," + date + "," + "\n");
+                fw.append(username[0] + "," + formatDate.format(date) + "," + "\n");
 
                 System.out.println("Wrote " + username[0] + " to file on " + date);
 
@@ -254,5 +256,75 @@ public class SendHTMLEmail {
         br.close();
 
         System.out.println("Done muthafucka");
+    }
+
+    public static void deleteOldUserEmailsFromStaticSourceURIFile() throws IOException{
+        Scanner scanner = new Scanner(new File("/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/StaticSourceURIUsers.csv"));
+        String string = "";
+        String username = "";
+        long DAY_IN_MS = 1000 * 60 * 60 * 24;
+        Date date = null;
+        Date oneWeekAgo = new Date(System.currentTimeMillis() - (7 * DAY_IN_MS));
+        DateFormat formatDate = new SimpleDateFormat("MM-dd-yyyy");
+
+        FileWriter fw = new FileWriter("/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/StaticSourceURIUsers.csv",true);
+
+        scanner.useDelimiter(",");
+
+        while(scanner.hasNext()){
+            string = scanner.next();
+
+            try{
+                date = formatDate.parse(string);
+
+                if(date.after(oneWeekAgo)){
+                    fw.append(username + "," + string + ",");
+                }
+            }catch (java.text.ParseException e){
+                username = string;
+            }catch (NullPointerException e){
+
+            }
+        }
+
+        fw.flush();
+        fw.close();
+
+        scanner.close();
+    }
+
+    public static void deleteOldUserEmailsFromStaticDiskSpaceFile() throws IOException{
+        Scanner scanner = new Scanner(new File("/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/StaticDiskSpaceUsers.csv"));
+        String string = "";
+        String username = "";
+        long DAY_IN_MS = 1000 * 60 * 60 * 24;
+        Date date = null;
+        Date oneWeekAgo = new Date(System.currentTimeMillis() - (7 * DAY_IN_MS));
+        DateFormat formatDate = new SimpleDateFormat("MM-dd-yyyy");
+
+        FileWriter fw = new FileWriter("/Users/anthonyduren/Documents/GitHub/CRAI/Email/src/StaticDiskSpaceUsers.csv",true);
+
+        scanner.useDelimiter(",");
+
+        while(scanner.hasNext()){
+            string = scanner.next();
+
+            try{
+                date = formatDate.parse(string);
+
+                if(date.after(oneWeekAgo)){
+                    fw.append(username + "," + string + ",");
+                }
+            }catch (java.text.ParseException e){
+                username = string;
+            }catch (NullPointerException e){
+
+            }
+        }
+
+        fw.flush();
+        fw.close();
+
+        scanner.close();
     }
 }
