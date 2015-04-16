@@ -42,18 +42,20 @@ public class SendHTMLEmail {
         //String unformattedEmailAddress = "";
         String emailAddress = "";
         String csvSplitBy = ",";
-
-        System.out.println("1st ===> Setup Mail Server Properties..");
+        System.out.println("- - - - - - - - - - - - - - ");
+        System.out.println();
+        System.out.println();
+        System.out.println("1 ==> Beginning Source URI");
 
         mailServerProperties = System.getProperties();
         mailServerProperties.put("mail.smtp.port", "587");
         mailServerProperties.put("mail.smtp.auth", "true");
         mailServerProperties.put("mail.smtp.starttls.enable", "true");
 
-        System.out.println("1st ===> Mail Server Properties have been setup successfully..");
+        System.out.println(".");
 
         //Step2
-        System.out.println("2nd ===> get Mail Session..");
+        System.out.println(".");
 
         getMailSession = Session.getDefaultInstance(mailServerProperties, null);
         generateMailMessage = new MimeMessage(getMailSession);
@@ -118,7 +120,7 @@ public class SendHTMLEmail {
             br2.close();
 
             if (x == 0) {
-                System.out.println(emailAddress);
+                System.out.println(emailAddress + "being written to file and emailed...");
 
                 if (!(emailAddress.equals("sernam"))) {
                     generateMailMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(emailAddress));
@@ -141,7 +143,7 @@ public class SendHTMLEmail {
 
                     fw.append(emailAddress + "," + formatDate.format(date) + "," + "\n");
 
-                    System.out.println("Wrote " + emailAddress + " to file on " + date);
+                    //System.out.println("Wrote " + emailAddress + " to file on " + date);
 
                     fw.flush();
                     fw.close();
@@ -151,7 +153,9 @@ public class SendHTMLEmail {
 
         br.close();
 
-        System.out.println("Email Batch Complete, MuthaFucka.");
+        System.out.println("1 ==> Email Batch Complete, MuthaFucka.");
+        System.out.println();
+        System.out.println();
     }
 
     public static void generateAndSendDiskSpaceEmail() throws AddressException, MessagingException, IOException {
@@ -166,17 +170,17 @@ public class SendHTMLEmail {
         String emailAddress = "";
         String csvSplitBy = ",";
 
-        System.out.println("1st ===> Setup Mail Server Properties..");
+        System.out.println("2 ==> Beginning Disk Space Full");
 
         mailServerProperties = System.getProperties();
         mailServerProperties.put("mail.smtp.port", "587");
         mailServerProperties.put("mail.smtp.auth", "true");
         mailServerProperties.put("mail.smtp.starttls.enable", "true");
 
-        System.out.println("1st ===> Mail Server Properties have been setup successfully..");
+        System.out.println(".");
 
         //Step2
-        System.out.println("2nd ===> get Mail Session..");
+        System.out.println(".");
 
         getMailSession = Session.getDefaultInstance(mailServerProperties, null);
         generateMailMessage = new MimeMessage(getMailSession);
@@ -240,7 +244,7 @@ public class SendHTMLEmail {
             br2.close();
 
             if (x == 0) {
-                System.out.println(emailAddress);
+                System.out.println(emailAddress + "being written to file and emailed...");
 
                 if(!(emailAddress.equals("sernam"))) {
                     generateMailMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(emailAddress));
@@ -263,7 +267,7 @@ public class SendHTMLEmail {
 
                     fw.append(emailAddress + "," + formatDate.format(date) + "," + "\n");
 
-                    System.out.println("Wrote " + emailAddress + " to file on " + date);
+                    //System.out.println("Wrote " + emailAddress + " to file on " + date);
 
                     fw.flush();
                     fw.close();
@@ -273,7 +277,9 @@ public class SendHTMLEmail {
 
         br.close();
 
-        System.out.println("Email Batch Complete, MuthaFucka.");
+        System.out.println("2 ==> Email Batch Complete, MuthaFucka.");
+        System.out.println();
+        System.out.println();
     }
 
     public static void deleteOldUserEmailsFromStaticSourceURIFile() throws IOException{
@@ -325,17 +331,17 @@ public class SendHTMLEmail {
         String emailAddress = "";
         String csvSplitBy = ",";
 
-        System.out.println("1st ===> Setup Mail Server Properties..");
+        System.out.println("3 ==> Beginning Mac Merc");
 
         mailServerProperties = System.getProperties();
         mailServerProperties.put("mail.smtp.port", "587");
         mailServerProperties.put("mail.smtp.auth", "true");
         mailServerProperties.put("mail.smtp.starttls.enable", "true");
 
-        System.out.println("1st ===> Mail Server Properties have been setup successfully..");
+        System.out.println(".");
 
         //Step2
-        System.out.println("2nd ===> get Mail Session..");
+        System.out.println(".");
 
         getMailSession = Session.getDefaultInstance(mailServerProperties, null);
         generateMailMessage = new MimeMessage(getMailSession);
@@ -414,7 +420,7 @@ public class SendHTMLEmail {
             br2.close();
 
             if (x == 0) {
-                System.out.println(emailAddress);
+                System.out.println(emailAddress + "Being written to file and emailed...");
 
                 if (!(emailAddress.equals("sernam"))) {
                     generateMailMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(emailAddress));
@@ -437,7 +443,7 @@ public class SendHTMLEmail {
 
                     fw.append(emailAddress + "," + formatDate.format(date) + "," + "\n");
 
-                    System.out.println("Wrote " + emailAddress + " to file on " + date);
+                    //System.out.println("Wrote " + emailAddress + " to file on " + date);
 
                     fw.flush();
                     fw.close();
@@ -447,7 +453,8 @@ public class SendHTMLEmail {
 
         br.close();
 
-        System.out.println("Email Batch Complete, MuthaFucka.");
+        System.out.println("3 ==> Email Batch Complete, MuthaFucka.");
+        System.out.println();
     }
 
     public static void deleteOldUserEmailsFromStaticDiskSpaceFile() throws IOException{
