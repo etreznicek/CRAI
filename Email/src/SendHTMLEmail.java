@@ -25,6 +25,7 @@ public class SendHTMLEmail {
         SendHTMLEmail obj = new SendHTMLEmail();
         generateAndSendSourceURIEmail();
         generateAndSendDiskSpaceEmail();
+        generateAndSendMacMercEmail();
         //deleteOldUserEmailsFromStaticSourceURIFile();
         //deleteOldUserEmailsFromStaticDiskSpaceFile();
         //System.out.println("\n\n ===> Your Java Program has just sent an Email successfully. Check your email..");
@@ -364,7 +365,7 @@ public class SendHTMLEmail {
         "</tr>" +
         "<tr>" +
         "<td style=\"font-family:'arial','helvetica neue','helvetica',sans-serif;font-weight: normal;line-height: 1.6;color: #E8E8E8;font-size: 15px;text-align: left;\">" +
-                "If you are on a version of Mac OSX later than 10.7.5, you can install the new version of Mac Mercury by first going to your Applications folder on your computer, and moving Hudl Mercury to your trash can." +
+                "If you are on a version of Mac OSX later than 10.7.5, you can install the new version of Mac Mercury by first going to your Applications folder on your computer, and moving Hudl Mercury to your trash can. Make sure to empty your trash when this is done!" +
                 "</td>" +
         "</tr>" +
         "<tr>" +
@@ -425,7 +426,7 @@ public class SendHTMLEmail {
                     Transport transport = getMailSession.getTransport("smtp");
 
                     // Enter your correct gmail UserID and Password (XXXApp Shah@gmail.com)
-                    transport.connect("smtp.mandrillapp.com", "eric.reznicek@hudl.com", "i39DyhJSdEQYWO9NktcEpQ");
+                    transport.connect("smtp.mandrillapp.com", "eric.reznicek@hudl.com", "7Blsv_Y-lK1rT_tia-zxhA");
                     transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
                     transport.close();
 

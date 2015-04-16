@@ -30,8 +30,8 @@
       <file leaf-file-name="SendHTMLEmail.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SendHTMLEmail.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.5820745">
-              <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="367" column="270" selection-start-line="367" selection-start-column="270" selection-end-line="367" selection-end-column="270" />
               <folding />
             </state>
           </provider>
@@ -85,8 +85,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -121,6 +119,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -131,6 +131,8 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="FullScreen" value="false" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RunManager" selected="Application.SendHTMLEmail">
     <configuration default="false" name="SendHTMLEmail" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -396,6 +398,22 @@
     <entry file="file://$PROJECT_DIR$/src/SendHTMLEmail.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+          <caret line="367" column="270" selection-start-line="367" selection-start-column="270" selection-end-line="367" selection-end-column="270" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SendHTMLEmail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SendHTMLEmail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
           <caret line="112" column="26" selection-start-line="112" selection-start-column="26" selection-end-line="112" selection-end-column="26" />
           <folding />
         </state>
@@ -492,8 +510,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SendHTMLEmail.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.5820745">
-          <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="367" column="270" selection-start-line="367" selection-start-column="270" selection-end-line="367" selection-end-column="270" />
           <folding />
         </state>
       </provider>
