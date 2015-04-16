@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Email">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Email/out/artifacts/Email_jar/Email.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
