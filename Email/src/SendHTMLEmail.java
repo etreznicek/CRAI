@@ -25,15 +25,15 @@ public class SendHTMLEmail {
         SendHTMLEmail obj = new SendHTMLEmail();
         generateAndSendSourceURIEmail();
         generateAndSendDiskSpaceEmail();
-        deleteOldUserEmailsFromStaticSourceURIFile();
-        deleteOldUserEmailsFromStaticDiskSpaceFile();
-        System.out.println("\n\n ===> Your Java Program has just sent an Email successfully. Check your email..");
+        //deleteOldUserEmailsFromStaticSourceURIFile();
+        //deleteOldUserEmailsFromStaticDiskSpaceFile();
+        //System.out.println("\n\n ===> Your Java Program has just sent an Email successfully. Check your email..");
     }
 
     public static void generateAndSendSourceURIEmail() throws AddressException, MessagingException, IOException {
         //Step1
-        String csvFile = "/Users/hudl/Desktop/NewSourceURIUsers.csv";
-        String staticFile = "/Users/hudl/Desktop/StaticSourceURIUsers.csv";
+        String csvFile = "C:\\Users\\eric.reznicek\\Documents\\Support_Projects\\PROJECT_CRAI\\NewSourceURIUsers.csv";
+        String staticFile = "C:\\Users\\eric.reznicek\\Documents\\Support_Projects\\PROJECT_CRAI\\StaticSourceURIUsers.csv";
         BufferedReader br = null;
         BufferedReader br2 = null;
         String line = "";
@@ -42,17 +42,17 @@ public class SendHTMLEmail {
         String emailAddress = "";
         String csvSplitBy = ",";
 
-        System.out.println("\n 1st ===> setup Mail Server Properties..");
+        System.out.println("1st ===> Setup Mail Server Properties..");
 
         mailServerProperties = System.getProperties();
         mailServerProperties.put("mail.smtp.port", "587");
         mailServerProperties.put("mail.smtp.auth", "true");
         mailServerProperties.put("mail.smtp.starttls.enable", "true");
 
-        System.out.println("Mail Server Properties have been setup successfully..");
+        System.out.println("1st ===> Mail Server Properties have been setup successfully..");
 
         //Step2
-        System.out.println("\n\n 2nd ===> get Mail Session..");
+        System.out.println("2nd ===> get Mail Session..");
 
         getMailSession = Session.getDefaultInstance(mailServerProperties, null);
         generateMailMessage = new MimeMessage(getMailSession);
@@ -77,7 +77,7 @@ public class SendHTMLEmail {
                 "    </tr>\n" +
                 "    <tr>\n" +
                 "        <td style=\"font-family:'arial','helvetica neue','helvetica',sans-serif;font-weight: normal;line-height: 1.25;color: #E8E8E8;font-size: 15px;text-align: left;\">\n" +
-                "            Following the steps in this <a href=\"http://public.hudl.com/support/troubleshooting/source-uri-error/\" style=\"color: #F87620; font-weight: bold; transition: 0.2s;\">tutorial</a> should resolve the problem.\n" +
+                "            Following the steps in this <a href=\"http://goo.gl/euzfDL\" style=\"color: #F87620; font-weight: bold; transition: 0.2s;\">tutorial</a> should resolve the problem.\n" +
                 "        </td>\n" +
                 "    </tr>\n" +
                 "    <tr>\n" +
@@ -91,6 +91,7 @@ public class SendHTMLEmail {
                 "</table>";
 
         generateMailMessage.setContent(emailBody, "text/html");
+        generateMailMessage.setHeader("X-MC-TRACK", "opens, clicks_all");
 
         br = new BufferedReader(new FileReader(csvFile));
 
@@ -128,7 +129,7 @@ public class SendHTMLEmail {
                     Transport transport = getMailSession.getTransport("smtp");
 
                     // Enter your correct gmail UserID and Password (XXXApp Shah@gmail.com)
-                    transport.connect("smtp.office365.com", "support@hudl.com", "");
+                    transport.connect("smtp.mandrillapp.com", "eric.reznicek@hudl.com", "i39DyhJSdEQYWO9NktcEpQ");
                     transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
                     transport.close();
 
@@ -149,13 +150,13 @@ public class SendHTMLEmail {
 
         br.close();
 
-        System.out.println("Done muthafucka");
+        System.out.println("Email Batch Complete, MuthaFucka.");
     }
 
     public static void generateAndSendDiskSpaceEmail() throws AddressException, MessagingException, IOException {
         //Step1
-        String csvFile = "/Users/hudl/Desktop/NewDiskSpaceUsers.csv";
-        String staticFile = "/Users/hudl/Desktop/StaticDiskSpaceUsers.csv";
+        String csvFile = "C:\\Users\\eric.reznicek\\Documents\\Support_Projects\\PROJECT_CRAI\\NewDiskSpaceUsers.csv";
+        String staticFile = "C:\\Users\\eric.reznicek\\Documents\\Support_Projects\\PROJECT_CRAI\\StaticDiskSpaceUsers.csv";
         BufferedReader br = null;
         BufferedReader br2 = null;
         String line = "";
@@ -164,17 +165,17 @@ public class SendHTMLEmail {
         String emailAddress = "";
         String csvSplitBy = ",";
 
-        System.out.println("\n 1st ===> setup Mail Server Properties..");
+        System.out.println("1st ===> Setup Mail Server Properties..");
 
         mailServerProperties = System.getProperties();
         mailServerProperties.put("mail.smtp.port", "587");
         mailServerProperties.put("mail.smtp.auth", "true");
         mailServerProperties.put("mail.smtp.starttls.enable", "true");
 
-        System.out.println("Mail Server Properties have been setup successfully..");
+        System.out.println("1st ===> Mail Server Properties have been setup successfully..");
 
         //Step2
-        System.out.println("\n\n 2nd ===> get Mail Session..");
+        System.out.println("2nd ===> get Mail Session..");
 
         getMailSession = Session.getDefaultInstance(mailServerProperties, null);
         generateMailMessage = new MimeMessage(getMailSession);
@@ -199,7 +200,7 @@ public class SendHTMLEmail {
                 "    </tr>\n" +
                 "    <tr>\n" +
                 "        <td style=\"font-family:'arial','helvetica neue','helvetica',sans-serif;font-weight: normal;line-height: 1.25;color: #E8E8E8;font-size: 15px;text-align: left;\">\n" +
-                "            Following the steps in this <a href=\"http://public.hudl.com/support/troubleshooting/delete-mercury-temporary-project-files/\" style=\"color: #F87620; font-weight: bold; transition: 0.2s;\">tutorial</a> should resolve the problem.\n" +
+                "            Following the steps in this <a href=\"http://goo.gl/JP5sHw\" style=\"color: #F87620; font-weight: bold; transition: 0.2s;\">tutorial</a> should resolve the problem.\n" +
                 "        </td>\n" +
                 "    </tr>\n" +
                 "    <tr>\n" +
@@ -250,7 +251,7 @@ public class SendHTMLEmail {
                     Transport transport = getMailSession.getTransport("smtp");
 
                     // Enter your correct gmail UserID and Password (XXXApp Shah@gmail.com)
-                    transport.connect("smtp.office365.com", "support@hudl.com", "");
+                    transport.connect("smtp.office365.com", "support@hudl.com", "Hudd1ePassw0rd");
                     transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
                     transport.close();
 
@@ -271,7 +272,7 @@ public class SendHTMLEmail {
 
         br.close();
 
-        System.out.println("Done muthafucka");
+        System.out.println("Email Batch Complete, MuthaFucka.");
     }
 
     public static void deleteOldUserEmailsFromStaticSourceURIFile() throws IOException{
@@ -279,7 +280,7 @@ public class SendHTMLEmail {
         FileWriter fw = null;
         String string = "";
         String username = "";
-        String staticFile = "/Users/hudl/Desktop/StaticSourceURIUsers.csv";
+        String staticFile = "C:\\Users\\eric.reznicek\\Documents\\Support_Projects\\PROJECT_CRAI\\StaticSourceURIUsers.csv";
         long DAY_IN_MS = 1000 * 60 * 60 * 24;
         Date date = null;
         Date oneWeekAgo = new Date(System.currentTimeMillis() - (7 * DAY_IN_MS));
@@ -316,7 +317,7 @@ public class SendHTMLEmail {
         FileWriter fw = null;
         String string = "";
         String username = "";
-        String staticFile = "/Users/hudl/Desktop/StaticDiskSpaceUsers.csv";
+        String staticFile = "C:\\Users\\eric.reznicek\\Documents\\Support_Projects\\PROJECT_CRAI\\StaticDiskSpaceUsers.csv";
         long DAY_IN_MS = 1000 * 60 * 60 * 24;
         Date date = null;
         Date oneWeekAgo = new Date(System.currentTimeMillis() - (7 * DAY_IN_MS));

@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="java-mail-1.4.4">
+  <library name="Email">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/Resources/java-mail-1.4.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Email_jar/Email.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
